@@ -23,7 +23,7 @@
 
 <div>
   <form>
-    <label for="location">Enter here the stop to searcsh</label>
+    <label for="location">Enter here the stop to search</label>
     <input type="text" name="location" bind:value={stopName} />
     <button on:click={handleSubmit}>Search</button>
   </form>
@@ -31,8 +31,14 @@
     <p>Loading...</p>
   {:then results}
     {#if promise}
-      {#each results as { name }}
+      <p>The top 10 matches of your search are:</p>
+      {#each results as { name, products }}
         <p>{name}</p>
+        <!-- The next line takes the transport object and filter them, leaving only the ones that are true -->
+        {#each Object.keys(products).filter((k) => products[k]) as transport}
+          <p>{transport}</p>
+        {/each}
+        <p>______________________________</p>
       {/each}
     {/if}
   {/await}
