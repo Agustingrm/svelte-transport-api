@@ -4,11 +4,14 @@
   import NotFound from "./routes/notFound.svelte";
   import Nav from "./components/Nav.svelte";
   import SavedStops from "./routes/savedStops.svelte";
-  import Departures from "./routes/departures.svelte";
+  import { wrap } from "svelte-spa-router/wrap";
+  import Departures from "./routes/[departures].svelte";
 
   let routes = {
     "/": Home,
-    "/:id": Departures,
+    "/stops/:departures": wrap({
+      asyncComponent: () => Departures,
+    }),
     "/saved-stops": SavedStops,
     // If there is no match then
     "*": NotFound,

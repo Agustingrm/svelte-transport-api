@@ -6,7 +6,6 @@
     const response = await fetch(`https://v5.vbb.transport.rest/locations?query=${stopName}&results=10`);
     const data = await response.json();
     if (response.ok) {
-      console.log(data);
       return data;
     } else {
       throw new Error(data);
@@ -32,13 +31,16 @@
   {:then results}
     {#if promise}
       <p>The top 10 matches of your search are:</p>
-      {#each results as { name, products }}
-        <p>{name}</p>
-        <!-- The next line takes the transport object and filter them, leaving only the ones that are true -->
-        {#each Object.keys(products).filter((k) => products[k]) as transport}
-          <p>{transport}</p>
-        {/each}
-        <p>______________________________</p>
+      {#each results as { id, name, products }}
+        <a href={`/#/stops/${id}`}>
+          <p>{name}</p>
+          <p>The following transports are available on this location</p>
+          <!-- The next line takes the transport object and filter them, leaving only the ones that are true -->
+          <!-- {#each Object.keys(products).filter((k) => products[k]) as transport}
+            <p>{transport}</p>
+          {/each} -->
+          <p>______________________________</p>
+        </a>
       {/each}
     {/if}
   {/await}
