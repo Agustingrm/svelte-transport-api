@@ -1,5 +1,6 @@
 <script>
-  let storedData = localStorage.getItem("saved stops");
+  let storedData = "";
+  storedData = localStorage.getItem("saved stops");
   let storedDataObject = JSON.parse(storedData);
 
   const handleDelete = (array) => {
@@ -15,10 +16,11 @@
   };
   const handleClear = () => {
     localStorage.clear();
+    storedDataObject = "";
   };
 </script>
 
-{#if storedDataObject.length == 0}
+{#if storedDataObject == ""}
   <p>There are no stops Bookmarked</p>
 {:else}
   <div class="container">

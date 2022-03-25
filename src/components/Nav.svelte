@@ -1,10 +1,10 @@
 <nav>
-  <a href="/#/" class="title">
+  <a href="/" class="title">
     <h1>Stop Search App</h1>
   </a>
   <ul class="algo">
     <li>
-      <a href="/#/">Home</a>
+      <a href="/">Home</a>
     </li>
     <li>
       <a href="/#/saved-stops">Saved Stops</a>
