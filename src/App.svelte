@@ -5,11 +5,11 @@
   import Nav from "./components/Nav.svelte";
   import SavedStops from "./routes/savedStops.svelte";
   import { wrap } from "svelte-spa-router/wrap";
-  import Departures from "./routes/[departures].svelte";
+  import Departures from "./routes/departures.svelte";
 
   let routes = {
     "/": Home,
-    "/stops/:departures": wrap({
+    "/:stops/:departures": wrap({
       asyncComponent: () => Departures,
     }),
     "/saved-stops": SavedStops,
